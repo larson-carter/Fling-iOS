@@ -32,7 +32,7 @@ struct FlingContentView: View {
 
             HStack(spacing: 40) {
                 Button(action: {
-                    isPlaying.toggle()
+                    togglePlayPause()
                 }) {
                     Text(isPlaying ? "Pause" : "Play")
                 }
@@ -70,11 +70,17 @@ struct FlingContentView: View {
                 }
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
                     print("URL successfully sent")
+                    youtubeURL = "" // Clear the text box
+                    isPlaying = true // Set to play, assuming the video starts playing automatically
                 } else {
                     print("Failed with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
                 }
             }
         }.resume()
+    }
+
+    func togglePlayPause() {
+        isPlaying.toggle()
     }
 }
 
