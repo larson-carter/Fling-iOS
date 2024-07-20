@@ -21,7 +21,7 @@ struct ServiceDetailView: View {
                     ProgressView()
                 } else {
                     if isFlingable {
-                        NavigationLink(destination: FlingContentView()) {
+                        NavigationLink(destination: FlingContentView(ipAddress: ip)) {
                             Text("Fling Content")
                                 .padding()
                                 .background(Color.blue)
