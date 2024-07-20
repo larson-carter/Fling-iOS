@@ -14,7 +14,8 @@ struct FlingContentView: View {
     @State private var isSending: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    @State private var sentURLs: [String] = [] // Store sent URLs
+    @State private var sentURLs: [String] = []
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() // Make this a constant
 
     var body: some View {
         VStack(spacing: 20) {
@@ -35,18 +36,28 @@ struct FlingContentView: View {
 
             HStack(spacing: 40) {
                 Button(action: {
-                    togglePlayPause()
+                    if isPlaying {
+                        pauseVideo()
+                    } else {
+                        playVideo()
+                    }
                 }) {
                     Text(isPlaying ? "Pause" : "Play")
                 }
-                
-                Button(action: {
-                    // Define skip behavior here
-                    print("Skip pressed")
-                }) {
-                    Text("Skip")
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+
+                Button("Skip") {
+                    skipVideo()
                 }
+                .padding()
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
+
             Spacer()
 
             ScrollView(.vertical, showsIndicators: true) {
@@ -64,6 +75,32 @@ struct FlingContentView: View {
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Unsupported URL"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
+        .onReceive(timer) { _ in
+            checkIfPlaying()
+        }
+    }
+
+    func checkIfPlaying() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/isPlaying") else {
+            print("Invalid URL")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Failed to check play status: \(String(describing: error))")
+                return
+            }
+            
+            do {
+                let status = try JSONDecoder().decode(PlaybackStatus.self, from: data)
+                DispatchQueue.main.async {
+                    self.isPlaying = status.isPlaying
+                }
+            } catch {
+                print("Failed to decode response: \(error)")
+            }
+        }.resume()
     }
 
     func sendYouTubeURL() {
@@ -72,10 +109,10 @@ struct FlingContentView: View {
             print("Invalid URL")
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
+
         isSending = true
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
@@ -101,10 +138,79 @@ struct FlingContentView: View {
         }.resume()
     }
 
-    func togglePlayPause() {
-        isPlaying.toggle()
+    func pauseVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/pause") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Pause request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video paused successfully")
+                } else {
+                    print("Failed to pause with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
+    }
+
+    func playVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/play") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Play request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video played successfully")
+                } else {
+                    print("Failed to play with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
+    }
+
+    func skipVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/skip") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Skip request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video skipped successfully")
+                } else {
+                    print("Failed to skip with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
     }
 }
+
 
 //#Preview {
 //    FlingContentView()
