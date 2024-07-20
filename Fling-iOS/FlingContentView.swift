@@ -12,6 +12,8 @@ struct FlingContentView: View {
     @State private var youtubeURL: String = ""
     @State private var isPlaying: Bool = false
     @State private var isSending: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
 
     var body: some View {
         VStack(spacing: 20) {
@@ -48,6 +50,9 @@ struct FlingContentView: View {
         }
         .navigationTitle("Fling Content")
         .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Unsupported URL"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
     }
 
     func sendYouTubeURL() {
@@ -68,12 +73,17 @@ struct FlingContentView: View {
                     print("Failed to send URL: \(error)")
                     return
                 }
-                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-                    print("URL successfully sent")
-                    youtubeURL = "" // Clear the text box
-                    isPlaying = true // Set to play, assuming the video starts playing automatically
-                } else {
-                    print("Failed with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                if let httpResponse = response as? HTTPURLResponse {
+                    switch httpResponse.statusCode {
+                    case 200:
+                        youtubeURL = "" // Clear the text box
+                        isPlaying = true // Set to play
+                    case 400:
+                        alertMessage = "This app currently only supports YouTube links."
+                        showAlert = true
+                    default:
+                        print("Failed with status code: \(httpResponse.statusCode)")
+                    }
                 }
             }
         }.resume()
@@ -83,6 +93,7 @@ struct FlingContentView: View {
         isPlaying.toggle()
     }
 }
+
 
 //#Preview {
 //    FlingContentView()
