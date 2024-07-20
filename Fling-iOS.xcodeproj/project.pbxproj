@@ -14,6 +14,8 @@
 		D7A125A02C4BA82D000DF43A /* Fling_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1259F2C4BA82D000DF43A /* Fling_iOSTests.swift */; };
 		D7A125AA2C4BA82D000DF43A /* Fling_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A125A92C4BA82D000DF43A /* Fling_iOSUITests.swift */; };
 		D7A125AC2C4BA82D000DF43A /* Fling_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A125AB2C4BA82D000DF43A /* Fling_iOSUITestsLaunchTests.swift */; };
+		D7A125BB2C4BABC7000DF43A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A125BA2C4BABC7000DF43A /* NetworkManager.swift */; };
+		D7A125BD2C4BB215000DF43A /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A125BC2C4BB215000DF43A /* ServiceDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		D7A125A52C4BA82D000DF43A /* Fling-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fling-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A125A92C4BA82D000DF43A /* Fling_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fling_iOSUITests.swift; sourceTree = "<group>"; };
 		D7A125AB2C4BA82D000DF43A /* Fling_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fling_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D7A125BA2C4BABC7000DF43A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D7A125BC2C4BB215000DF43A /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				D7A125902C4BA82C000DF43A /* ContentView.swift */,
 				D7A125922C4BA82C000DF43A /* Assets.xcassets */,
 				D7A125942C4BA82C000DF43A /* Preview Content */,
+				D7A125BA2C4BABC7000DF43A /* NetworkManager.swift */,
+				D7A125BC2C4BB215000DF43A /* ServiceDetailView.swift */,
 			);
 			path = "Fling-iOS";
 			sourceTree = "<group>";
@@ -257,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A125BB2C4BABC7000DF43A /* NetworkManager.swift in Sources */,
+				D7A125BD2C4BB215000DF43A /* ServiceDetailView.swift in Sources */,
 				D7A125912C4BA82C000DF43A /* ContentView.swift in Sources */,
 				D7A1258F2C4BA82C000DF43A /* Fling_iOSApp.swift in Sources */,
 			);
