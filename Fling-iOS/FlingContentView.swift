@@ -14,6 +14,7 @@ struct FlingContentView: View {
     @State private var isSending: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var sentURLs: [String] = [] // Store sent URLs
 
     var body: some View {
         VStack(spacing: 20) {
@@ -47,6 +48,16 @@ struct FlingContentView: View {
                 }
             }
             Spacer()
+
+            ScrollView(.vertical, showsIndicators: true) {
+                VStack(alignment: .leading) {
+                    ForEach(sentURLs, id: \.self) { url in
+                        Text(url).padding(.vertical, 2)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .frame(height: 100) // Adjust height as needed
         }
         .navigationTitle("Fling Content")
         .padding()
@@ -78,6 +89,7 @@ struct FlingContentView: View {
                     case 200:
                         youtubeURL = "" // Clear the text box
                         isPlaying = true // Set to play
+                        sentURLs.append(escapedURL) // Append to sent URLs list
                     case 400:
                         alertMessage = "This app currently only supports YouTube links."
                         showAlert = true
@@ -93,7 +105,6 @@ struct FlingContentView: View {
         isPlaying.toggle()
     }
 }
-
 
 //#Preview {
 //    FlingContentView()
