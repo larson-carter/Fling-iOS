@@ -20,7 +20,17 @@ struct ServiceDetailView: View {
                 if isLoading {
                     ProgressView()
                 } else {
-                    Text(isFlingable ? "This service is flingable!" : "This service is not flingable.")
+                    if isFlingable {
+                        NavigationLink(destination: FlingContentView()) {
+                            Text("Fling Content")
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                    } else {
+                        Text("This service is not flingable.")
+                    }
                 }
             } else {
                 Text("IP Address: Unavailable")
