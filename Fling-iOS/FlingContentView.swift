@@ -14,7 +14,7 @@ struct FlingContentView: View {
     @State private var isSending: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    @State private var sentURLs: [String] = [] // Store sent URLs
+    @State private var sentURLs: [String] = []
 
     var body: some View {
         VStack(spacing: 20) {
@@ -35,18 +35,29 @@ struct FlingContentView: View {
 
             HStack(spacing: 40) {
                 Button(action: {
-                    togglePlayPause()
+                    if isPlaying {
+                        pauseVideo()
+                    } else {
+                        playVideo()
+                    }
+                    isPlaying.toggle() // Toggle play/pause state
                 }) {
                     Text(isPlaying ? "Pause" : "Play")
                 }
-                
-                Button(action: {
-                    // Define skip behavior here
-                    print("Skip pressed")
-                }) {
-                    Text("Skip")
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+
+                Button("Skip") {
+                    skipVideo()
                 }
+                .padding()
+                .background(Color.orange)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
+
             Spacer()
 
             ScrollView(.vertical, showsIndicators: true) {
@@ -72,10 +83,10 @@ struct FlingContentView: View {
             print("Invalid URL")
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
+
         isSending = true
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
@@ -100,9 +111,78 @@ struct FlingContentView: View {
             }
         }.resume()
     }
+    
+    func skipVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/skip") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Skip request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video skipped successfully")
+                } else {
+                    print("Failed to skip with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
+    }
 
-    func togglePlayPause() {
-        isPlaying.toggle()
+
+    func pauseVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/pause") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Pause request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video paused successfully")
+                } else {
+                    print("Failed to pause with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
+    }
+
+    func playVideo() {
+        guard let url = URL(string: "http://\(ipAddress)/api/fling/play") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Play request failed: \(error)")
+                    return
+                }
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Video played successfully")
+                } else {
+                    print("Failed to play with status code: \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                }
+            }
+        }.resume()
     }
 }
 
