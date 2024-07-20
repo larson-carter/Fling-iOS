@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var networkManager = NetworkManager()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView {
+            List(networkManager.services, id: \.self) { service in
+                NavigationLink(destination: ServiceDetailView(service: service)) {
+                    Text(service.name)
+                }
+            }
+            .navigationTitle("Available Services")
+            .onAppear {
+                networkManager.startBrowsing()
+            }
+            .onDisappear {
+                networkManager.stopBrowsing()
+            }
         }
-        .padding()
     }
 }
 
