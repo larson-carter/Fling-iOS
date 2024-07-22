@@ -46,6 +46,7 @@
 		D73C36F82C4DF903005BB83B /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		D73C36FA2C4DF910005BB83B /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		D73C36FC2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviouslyFlingedContentView.swift; sourceTree = "<group>"; };
+		D73C36FE2C4E0DC1005BB83B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D7A1258B2C4BA82B000DF43A /* Fling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1258E2C4BA82C000DF43A /* Fling_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fling_iOSApp.swift; sourceTree = "<group>"; };
 		D7A125902C4BA82C000DF43A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		D7A1258D2C4BA82B000DF43A /* Fling-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D73C36FE2C4E0DC1005BB83B /* Info.plist */,
 				D7A1258E2C4BA82C000DF43A /* Fling_iOSApp.swift */,
 				D7A125902C4BA82C000DF43A /* ContentView.swift */,
 				D7A125922C4BA82C000DF43A /* Assets.xcassets */,
@@ -457,7 +459,9 @@
 				DEVELOPMENT_TEAM = FJ6XML54XT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fling-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Fling TV";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To access fling devices!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -486,7 +490,9 @@
 				DEVELOPMENT_TEAM = FJ6XML54XT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fling-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Fling TV";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To access fling devices!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
