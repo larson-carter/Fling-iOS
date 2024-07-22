@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D73C36F72C4DF8E9005BB83B /* VideoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C36F62C4DF8E9005BB83B /* VideoDetailView.swift */; };
+		D73C36F92C4DF903005BB83B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C36F82C4DF903005BB83B /* Video.swift */; };
+		D73C36FB2C4DF910005BB83B /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C36FA2C4DF910005BB83B /* VideoList.swift */; };
+		D73C36FD2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73C36FC2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift */; };
 		D7A1258F2C4BA82C000DF43A /* Fling_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1258E2C4BA82C000DF43A /* Fling_iOSApp.swift */; };
 		D7A125912C4BA82C000DF43A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A125902C4BA82C000DF43A /* ContentView.swift */; };
 		D7A125932C4BA82C000DF43A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7A125922C4BA82C000DF43A /* Assets.xcassets */; };
@@ -38,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D73C36F62C4DF8E9005BB83B /* VideoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailView.swift; sourceTree = "<group>"; };
+		D73C36F82C4DF903005BB83B /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		D73C36FA2C4DF910005BB83B /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
+		D73C36FC2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviouslyFlingedContentView.swift; sourceTree = "<group>"; };
 		D7A1258B2C4BA82B000DF43A /* Fling-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fling-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7A1258E2C4BA82C000DF43A /* Fling_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fling_iOSApp.swift; sourceTree = "<group>"; };
 		D7A125902C4BA82C000DF43A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +118,10 @@
 				D7A125BC2C4BB215000DF43A /* ServiceDetailView.swift */,
 				D7A125BE2C4BB5B1000DF43A /* FlingContentView.swift */,
 				D7A125C02C4BC98B000DF43A /* PlaybackStatus.swift */,
+				D73C36F62C4DF8E9005BB83B /* VideoDetailView.swift */,
+				D73C36F82C4DF903005BB83B /* Video.swift */,
+				D73C36FA2C4DF910005BB83B /* VideoList.swift */,
+				D73C36FC2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift */,
 			);
 			path = "Fling-iOS";
 			sourceTree = "<group>";
@@ -269,10 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D73C36FB2C4DF910005BB83B /* VideoList.swift in Sources */,
+				D73C36F72C4DF8E9005BB83B /* VideoDetailView.swift in Sources */,
+				D73C36FD2C4DFAE0005BB83B /* PreviouslyFlingedContentView.swift in Sources */,
 				D7A125BB2C4BABC7000DF43A /* NetworkManager.swift in Sources */,
 				D7A125BF2C4BB5B1000DF43A /* FlingContentView.swift in Sources */,
 				D7A125BD2C4BB215000DF43A /* ServiceDetailView.swift in Sources */,
 				D7A125912C4BA82C000DF43A /* ContentView.swift in Sources */,
+				D73C36F92C4DF903005BB83B /* Video.swift in Sources */,
 				D7A125C12C4BC98B000DF43A /* PlaybackStatus.swift in Sources */,
 				D7A1258F2C4BA82C000DF43A /* Fling_iOSApp.swift in Sources */,
 			);
